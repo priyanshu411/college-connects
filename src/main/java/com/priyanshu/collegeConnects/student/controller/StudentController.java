@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
         @GetMapping("/student")
         public  String getStudents(){
+            System.out.println("\nthis is student get api\n");
             return  "this is student get api";
         }
     }
