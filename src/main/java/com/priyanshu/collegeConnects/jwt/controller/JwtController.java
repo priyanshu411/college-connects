@@ -1,7 +1,7 @@
 package com.priyanshu.collegeConnects.jwt.controller;
 
 import com.priyanshu.collegeConnects.auth.services.UserService;
-import com.priyanshu.collegeConnects.auth.user.CollegeUser;
+import com.priyanshu.collegeConnects.database.entity.CollegeUser;
 import com.priyanshu.collegeConnects.jwt.jwtHelper.JwtUtil;
 import com.priyanshu.collegeConnects.jwt.response.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class JwtController {
         System.out.println(collegeUser);
         try {
             this.authenticationManager.authenticate
-                    (new UsernamePasswordAuthenticationToken(collegeUser.getUserName(),collegeUser.getPassword()));
+                    (new UsernamePasswordAuthenticationToken(collegeUser.getEnrollmentNo(),collegeUser.getPassword()));
 
         } catch (UsernameNotFoundException e) {
             e.printStackTrace();
@@ -38,7 +38,7 @@ public class JwtController {
             throw new Exception("Bad Credentials");
         }
         //fine area
-        UserDetails userDetails=this.userService.loadUserByUsername(collegeUser.getUserName());
+        UserDetails userDetails=this.userService.loadUserByUsername(collegeUser.getEnrollmentNo());
         String token =this.jwtUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
