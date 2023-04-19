@@ -38,6 +38,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter
                 // rest of your security configuration
                 .authorizeRequests()
                 .antMatchers("/token").permitAll()
+                .antMatchers("/api/user/create").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
