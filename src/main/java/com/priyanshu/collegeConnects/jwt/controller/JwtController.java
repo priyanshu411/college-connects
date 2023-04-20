@@ -1,7 +1,8 @@
 package com.priyanshu.collegeConnects.jwt.controller;
 
-import com.priyanshu.collegeConnects.auth.services.UserService;
+import com.priyanshu.collegeConnects.jwt.service.UserService;
 import com.priyanshu.collegeConnects.database.entity.CollegeUser;
+import com.priyanshu.collegeConnects.exception.UserNotFoundException;
 import com.priyanshu.collegeConnects.jwt.jwtHelper.JwtUtil;
 import com.priyanshu.collegeConnects.jwt.response.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,10 @@ public class JwtController {
 
         } catch (UsernameNotFoundException e) {
             e.printStackTrace();
-            throw new Exception("Bad Credentials");
+            throw new UserNotFoundException(collegeUser.getEnrollmentNo(),"User not found");
         }catch (BadCredentialsException e){
             e.printStackTrace();
-            throw new Exception("Bad Credentials");
+            throw new UserNotFoundException(collegeUser.getEnrollmentNo(),"User not found");
         }
         //fine area
         UserDetails userDetails=this.userService.loadUserByUsername(collegeUser.getEnrollmentNo());
