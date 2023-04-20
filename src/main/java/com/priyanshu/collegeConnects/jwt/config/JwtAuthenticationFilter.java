@@ -1,6 +1,6 @@
 package com.priyanshu.collegeConnects.jwt.config;
 
-import com.priyanshu.collegeConnects.auth.services.UserService;
+import com.priyanshu.collegeConnects.jwt.service.UserService;
 import com.priyanshu.collegeConnects.jwt.jwtHelper.JwtUtil;
 import com.priyanshu.collegeConnects.utility.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
