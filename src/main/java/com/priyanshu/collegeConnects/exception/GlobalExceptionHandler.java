@@ -20,4 +20,9 @@ public class GlobalExceptionHandler {
         ApiResponse response=new ApiResponse(e.getId(),"fail",e.getMessage());
         return new ResponseEntity<ApiResponse>(response, HttpStatus.CONFLICT);
     }
+    @ExceptionHandler(UploadFailedException.class)
+    public ResponseEntity<ApiResponse>uploadFailed(UploadFailedException e){
+        ApiResponse response=new ApiResponse(e.getId(),"fail",e.getMessage());
+        return new ResponseEntity<ApiResponse>(response,HttpStatus.FAILED_DEPENDENCY);
+    }
 }

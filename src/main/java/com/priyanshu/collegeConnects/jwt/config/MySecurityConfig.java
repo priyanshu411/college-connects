@@ -39,6 +39,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter
                 .authorizeRequests()
                 .antMatchers("/token").permitAll()
                 .antMatchers("/api/user/create").permitAll()
+                .antMatchers("/api/notes").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
