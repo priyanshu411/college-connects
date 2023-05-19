@@ -25,4 +25,10 @@ public class GlobalExceptionHandler {
         ApiResponse response=new ApiResponse(e.getId(),"fail",e.getMessage());
         return new ResponseEntity<ApiResponse>(response,HttpStatus.FAILED_DEPENDENCY);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ApiResponse>ResourceNotFound(ResourceNotFoundException e){
+        ApiResponse response=new ApiResponse(e.getId(),"fail",e.getMessage());
+        return new ResponseEntity<ApiResponse>(response,HttpStatus.NOT_FOUND);
+    }
 }
