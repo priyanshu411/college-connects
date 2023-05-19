@@ -1,9 +1,6 @@
 package com.priyanshu.collegeConnects.database.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,7 +9,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@Builder
 public class Notes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +24,5 @@ public class Notes {
     private String mediaType;
     @Column(name="file_path")
     private String filePath;
+
 }
