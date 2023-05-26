@@ -36,7 +36,7 @@ public class NotesService {
     private String path;
 
 //upload notes
-    public ApiResponse uploadNotes(MultipartFile file, String userId,  String description) throws IOException {
+    public ApiResponse uploadNotes(MultipartFile file, String userId,  String description,String subject) throws IOException {
 
 
         CollegeUser user= collegeUserRepo.findById(userId).get();
@@ -65,6 +65,7 @@ public class NotesService {
                     notes.setMediaType(file.getContentType());
                     notes.setFilePath(filePath);
                     notes.setUserId(user.getEnrollmentNo());
+                    notes.setSubject(subject);
             notesRepo.save(notes);
             return new ApiResponse(user.getEnrollmentNo(),"success",fileName+" file is uploaded"); // file upload was successful
 
@@ -97,6 +98,7 @@ public class NotesService {
                 NotesResponseDto notes = NotesResponseDto.builder()
                         .fileName(String.valueOf(data[0]))
                         .description(String.valueOf(data[1]))
+                        .subject(String.valueOf(data[2]))
                         .build();
                 notesResponse.add(notes);
             }

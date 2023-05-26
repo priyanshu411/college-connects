@@ -10,4 +10,5 @@ import lombok.Setter;
 public class NotesResponseDto {
     private String fileName;
     private String description;
+    private String subject;
 }
