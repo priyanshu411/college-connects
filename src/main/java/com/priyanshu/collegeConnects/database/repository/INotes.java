@@ -12,7 +12,7 @@ import java.util.List;
 public interface INotes extends JpaRepository<Notes,Integer> {
     Notes findByFileName(String fileName);
 
-    String QUERY_FIND_NOTES="SELECT n.file_name,n.description\n" +
+    String QUERY_FIND_NOTES="SELECT n.file_name,n.description,n.subject\n" +
             "FROM notes n INNER JOIN college_user cu ON n.user_id = cu.enrollment_no\n" +
             "WHERE cu.course =:course AND cu.semester =:semester";
 

@@ -28,10 +28,10 @@ public class NotesApi {
 
 //   upload notes
     @PostMapping(value = "/notes/upload")
-    public ApiResponse uploadNotes(@RequestParam("notes")MultipartFile file ,@RequestParam ("description") String description, @RequestHeader("Authorization") String authorization) throws IOException {
+    public ApiResponse uploadNotes(@RequestParam("notes")MultipartFile file ,@RequestParam ("description") String description, @RequestParam ("subject") String subject,@RequestHeader("Authorization") String authorization) throws IOException {
 
 
-        ApiResponse resp=notesService.uploadNotes(file,jwtUtil.extractUsername(authorization.substring(7)),description);
+        ApiResponse resp=notesService.uploadNotes(file,jwtUtil.extractUsername(authorization.substring(7)),description,subject);
        log.info("response :{}",resp);
        return resp;
     }

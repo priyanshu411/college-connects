@@ -24,5 +24,7 @@ public class Notes {
     private String mediaType;
     @Column(name="file_path")
     private String filePath;
+    @Column(name="subject")
+    private String subject;
 
 }
