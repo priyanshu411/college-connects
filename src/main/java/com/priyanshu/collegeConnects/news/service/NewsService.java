@@ -1,21 +1,19 @@
 package com.priyanshu.collegeConnects.news.service;
 
-import com.priyanshu.collegeConnects.collegeUser.dto.CollegeUserSummaryDto;
 import com.priyanshu.collegeConnects.database.entity.CollegeUser;
 import com.priyanshu.collegeConnects.database.entity.News;
 import com.priyanshu.collegeConnects.database.repository.ICollegeUser;
 import com.priyanshu.collegeConnects.database.repository.INews;
 import com.priyanshu.collegeConnects.news.dto.NewsResponseDto;
 import com.priyanshu.collegeConnects.response.ApiResponse;
+import com.priyanshu.collegeConnects.utility.CommonUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 @Service
@@ -34,7 +32,7 @@ public class NewsService {
     public List<NewsResponseDto> getNews(String enrollmentNo ,String date){
         CollegeUser collegeUser=collegeUserRepository.findById(enrollmentNo).get();
         List<News> newsList= newsRepository.findAllByNewsDateAndCourseAndSemester
-                (convertToDate(date),collegeUser.getCourse(),collegeUser.getSemester());
+                (CommonUtility.convertToDate(date),collegeUser.getCourse(),collegeUser.getSemester());
 
         List<NewsResponseDto> newsDtoList=new ArrayList<>();
         for(int i=0;i<newsList.size();i++){
@@ -46,16 +44,5 @@ public class NewsService {
             newsDtoList.add(news);
         }
         return newsDtoList;
-    }
-
-    public static Date convertToDate(String dateString) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
-        try {
-            return formatter.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null; // Return null if the parsing fails
-        }
     }
 }
