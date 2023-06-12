@@ -58,11 +58,14 @@ public class NotesService {
 //        upload file
         Path target = Paths.get(filePathWithFileName);
         Files.copy(file.getInputStream(), target);
+        log.info("media type :{}",file.getContentType());
+        String mediaType=file.getContentType().length()>49? file.getContentType().substring(0,49)
+                            :file.getContentType();
         if (Files.exists(target)) {
           Notes notes=  new Notes();
                     notes.setDescription(description);
                     notes.setFileName(fileName);
-                    notes.setMediaType(file.getContentType());
+                    notes.setMediaType(mediaType);
                     notes.setFilePath(filePath);
                     notes.setUserId(user.getEnrollmentNo());
                     notes.setSubject(subject);
